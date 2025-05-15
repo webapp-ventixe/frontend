@@ -1,79 +1,57 @@
-import axios from "axios";
-import { API_URLS } from "../config/apiConfig";
+import axios from 'axios';
 
-// Create axios instances for each service
-const createApiClient = (baseURL) => {
-  const client = axios.create({
-    baseURL,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+// Bas-URLs för våra API:er
+const eventApiUrl = 'http://localhost:5177/api/events';
+const userApiUrl = 'http://localhost:5253/api/users';
 
-  // Request interceptor - add auth token
-  client.interceptors.request.use(
-    (config) => {
-      const token = localStorage.getItem("accessToken");
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
-      return config;
-    },
-    (error) => Promise.reject(error)
-  );
-
-  // Response interceptor - handle token refresh
-  client.interceptors.response.use(
-    (response) => response,
-    async (error) => {
-      const originalRequest = error.config;
-
-      // If 401 error and not already retrying
-      if (error.response?.status === 401 && !originalRequest._retry) {
-        originalRequest._retry = true;
-
-        try {
-          // Try to refresh the token
-          const refreshToken = localStorage.getItem("refreshToken");
-          if (!refreshToken) throw new Error("No refresh token available");
-
-          const { data } = await axios.post(`${API_URLS.AUTH}/auth/refresh`, {
-            refreshToken,
-          });
-
-          // Save new tokens
-          localStorage.setItem("accessToken", data.accessToken);
-          if (data.refreshToken) {
-            localStorage.setItem("refreshToken", data.refreshToken);
-          }
-
-          // Retry original request with new token
-          originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
-          return axios(originalRequest);
-        } catch (refreshError) {
-          // Handle refresh failure (e.g., logout user)
-          localStorage.removeItem("accessToken");
-          localStorage.removeItem("refreshToken");
-
-          // Redirect to login page or dispatch logout action
-          window.location.href = "/login";
-          return Promise.reject(refreshError);
-        }
-      }
-
-      return Promise.reject(error);
-    }
-  );
-
-  return client;
+// Event Service
+export const getEvents = async () => {
+  try {
+    const response = await axios.get(eventApiUrl);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    throw error;
+  }
 };
 
-// Create API clients for each service
-export const authApi = createApiClient(API_URLS.AUTH);
-export const eventsApi = createApiClient(API_URLS.EVENTS);
-export const bookingsApi = createApiClient(API_URLS.BOOKINGS);
-export const paymentsApi = createApiClient(API_URLS.PAYMENTS);
-export const notificationsApi = createApiClient(API_URLS.NOTIFICATIONS);
-export const categoriesApi = createApiClient(API_URLS.CATEGORIES);
-export const invoicesApi = createApiClient(API_URLS.INVOICES);
-export const userProfilesApi = createApiClient(API_URLS.USER_PROFILES);
+export const getEventById = async (id) => {
+  try {
+    const response = await axios.get(`${eventApiUrl}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching event ${id}:`, error);
+    throw error;
+  }
+};
+
+export const createEvent = async (eventData) => {
+  try {
+    const response = await axios.post(eventApiUrl, eventData);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating event:', error);
+    throw error;
+  }
+};
+
+// User Service - Vi behåller dessa för framtida bruk
+export const registerUser = async (userData) => {
+  try {
+    const response = await axios.post(`${userApiUrl}/register`, userData);
+    return response.data;
+  } catch (error) {
+    console.error('Error registering user:', error);
+    throw error;
+  }
+};
+
+export const loginUser = async (credentials) => {
+  try {
+    const response = await axios.post(`${userApiUrl}/login`, credentials);
+    return response.data;
+  } catch (error) {
+    console.error('Error logging in:', error);
+    throw error;
+  }
+};
