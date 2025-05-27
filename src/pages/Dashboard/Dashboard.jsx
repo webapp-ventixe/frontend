@@ -409,45 +409,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Recent Activity Section */}
-      <div className="recent-activity-section">
-        <div className="section-header">
-          <h3>Recent Activity</h3>
-          <button className="more-options">...</button>
-        </div>
-        <div className="activity-items">
-          <div className="activity-item">
-            <div className="activity-icon refund"></div>
-            <div className="activity-content">
-              <p className="activity-title">
-                <strong>Admin Stefanus Weber</strong> reviewed a refund request
-                for invoice ID: "INV1004"
-              </p>
-              <p className="activity-time">05:30 PM</p>
-            </div>
-          </div>
-          <div className="activity-item">
-            <div className="activity-icon ticket"></div>
-            <div className="activity-content">
-              <p className="activity-title">
-                <strong>Wells McGrath</strong> updated ticket prices for the
-                event: "Runway Revolution 2024" under the category "Fashion"
-              </p>
-              <p className="activity-time">02:00 PM</p>
-            </div>
-          </div>
-          <div className="activity-item">
-            <div className="activity-icon cancel"></div>
-            <div className="activity-content">
-              <p className="activity-title">
-                <strong>Patrick Cooper</strong> canceled a booking with invoice
-                ID: "INV1014"
-              </p>
-              <p className="activity-time">01:45 PM</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       {/* Footer removed as requested */}
     </div>

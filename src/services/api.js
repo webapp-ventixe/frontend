@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Bas-URLs för våra API:er
-const eventApiUrl = 'http://localhost:5177/api/events';
+const eventApiUrl = 'https://localhost:5177/api/events';
 const userApiUrl = 'http://localhost:5253/api/users';
 
 // Event Service

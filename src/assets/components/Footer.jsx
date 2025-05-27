@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="footer">
-      <p className="footer__copyright">Copyright &copy; 2025 Peterdraw</p>
+      <p className="footer__copyright">Copyright &copy; 2025 Ilir</p>
       <div className="footer__links">
         <a className="footer__link">Privacy Policy</a>
         <a className="footer__link">Terms and Conditions</a>
