@@ -2,42 +2,7 @@
 
 This is the frontend application for the Ventixe event management system, built using React and Vite. The application interfaces with several microservices to provide a complete event management solution.
 
-## Project Structure
 
-```
-Frontend/
-├── public/               # Static assets served as-is
-│   ├── icons/            # Application icons
-│   └── logos/            # Logo files
-├── src/                  # Source code
-│   ├── assets/           # Static assets imported by components
-│   │   ├── images/       # Images and icons
-│   │   ├── styles/       # Global styles and themes
-│   │   └── fonts/        # Custom fonts
-│   ├── components/       # React components
-│   │   ├── common/       # Reusable components
-│   │   ├── layout/       # Layout components
-│   │   └── feature/      # Feature-specific components
-│   │       ├── events/   # Event-related components
-│   │       ├── bookings/ # Booking-related components
-│   │       └── payments/ # Payment-related components
-│   ├── contexts/         # React context providers
-│   ├── hooks/            # Custom React hooks
-│   ├── pages/            # Page components
-│   │   ├── Home/         # Home page
-│   │   ├── Dashboard/    # Dashboard page
-│   │   ├── Events/       # Events pages
-│   │   ├── Bookings/     # Bookings pages
-│   │   └── Profile/      # User profile pages
-│   ├── services/         # Service layer for API communication
-│   ├── utils/            # Utility functions
-│   └── config/           # Configuration files
-├── .gitignore            # Git ignore file
-├── index.html            # Entry HTML file
-├── package.json          # Project dependencies and scripts
-├── vite.config.js        # Vite configuration
-└── README.md             # Project documentation
-```
 
 ## Microservices Integration
 
