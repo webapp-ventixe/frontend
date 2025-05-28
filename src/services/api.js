@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 // Bas-URLs för våra API:er
-const eventApiUrl = 'https://localhost:5177/api/events';
-const userApiUrl = 'http://localhost:5253/api/users';
+// Ändra från localhost till Azure-URL:er
+const eventApiUrl = 'https://eventservice-ivej-dufzfpdydrgahhdx.swedencentral-01.azurewebsites.net/api/events';
+const userApiUrl = 'https://serviceuser-ivej-f0erdwfugra0hgek.swedencentral-01.azurewebsites.net/api/users';
 
 // Event Service
 export const getEvents = async () => {
